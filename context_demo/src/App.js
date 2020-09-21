@@ -3,13 +3,16 @@ import './App.css';
 import Form from './Form'
 import PageContent from './PageContent'
 import Navbar from './Navbar'
+import { ThemeProvider, ThemeContext } from './contexts/ThemeContext'
 
 function App() {
   return (
-    <PageContent>
-      <Navbar />
-      <Form />
-    </PageContent>
+    <ThemeProvider>
+      <PageContent>
+        <Navbar />
+        <Form />
+      </PageContent>
+    </ThemeProvider>
   );
 }
 

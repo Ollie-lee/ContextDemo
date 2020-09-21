@@ -8,9 +8,12 @@ import SearchIcon from '@material-ui/icons/Search';
 import Switch from '@material-ui/core/Switch';
 
 import useStyles from './styles/NavBarStyles'
+import { ThemeContext } from './contexts/ThemeContext'
 
 export default function Navbar() {
   const classes = useStyles();
+
+  // static contextType = ThemeContext
 
   return (
     <div className={classes.root}>
