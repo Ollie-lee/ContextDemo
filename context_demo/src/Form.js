@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -12,9 +12,34 @@ import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import useStyles from './styles/FormStyles'
-
+import { LanguageContext } from './contexts/LanguageContext'
+const words = {
+  english: {
+    signIn: "Sign In",
+    email: "Email Address",
+    password: "Password",
+    remember: "Remember Me"
+  },
+  french: {
+    signIn: "Se Connecter",
+    email: "Adresse Électronique",
+    password: "Mot de Passe",
+    remember: "Souviens-toi De Moi"
+  },
+  spanish: {
+    signIn: "Registrarse",
+    email: "Correo Electrónico",
+    password: "Contraseña",
+    remember: "Recuérdame"
+  }
+};
 export default function Form() {
   const classes = useStyles();
+  //return 'value'
+  const { language, changeLanguage } = useContext(LanguageContext)
+
+  const { email, signIn, password, remember } = words[language]
+
 
   return (
     <main className={classes.main}>
@@ -25,7 +50,7 @@ export default function Form() {
         <Typography variant='h5'>
           Sign In
         </Typography>
-        <Select value='english'>
+        <Select value={language} onChange={changeLanguage}>
           <MenuItem value='english'>
             English
           </MenuItem>
@@ -39,19 +64,19 @@ export default function Form() {
         <form className={classes.form}>
           <FormControl margin='normal' required fullWidth>
             <InputLabel htmlFor='email'>
-              Email
+              {email}
             </InputLabel>
             <Input id='email' name='email' autoFocus></Input>
           </FormControl>
           <FormControl margin='normal' required fullWidth>
             <InputLabel htmlFor='Password'>
-              Password
+              {password}
             </InputLabel>
             <Input id='Password' name='Password' autoFocus></Input>
           </FormControl>
           <FormControlLabel
             control={<Checkbox color="primary" />}
-            label='Remember Me'
+            label={remember}
           />
           <Button
             variant='contained'
@@ -59,7 +84,7 @@ export default function Form() {
             fullWidth
             color='primary'
             className={classes.submit}
-          >Sign In</Button>
+          >{signIn}</Button>
         </form>
       </Paper>
     </main>

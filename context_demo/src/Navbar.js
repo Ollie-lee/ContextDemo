@@ -15,6 +15,21 @@ export default function Navbar() {
 
   // static contextType = ThemeContext
 
+  const content = {
+    english: {
+      search: "Search",
+      flag: "🇬🇧"
+    },
+    french: {
+      search: "Chercher",
+      flag: "🇫🇷"
+    },
+    spanish: {
+      search: "Buscar",
+      flag: "🇪🇸"
+    }
+  };
+
   return (
     <div className={classes.root}>
       <AppBar position='static' color='primary'>

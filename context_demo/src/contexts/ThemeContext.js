@@ -6,6 +6,14 @@ export const ThemeContext = createContext()
 //class name does not matter
 export class ThemeProvider extends Component {
   state = { isDarkMode: true }
+
+  toggleTheme = () => {
+    this.setState({
+      isDarkMode: !this.state.isDarkMode,
+      toggleTheme: this.toggleTheme
+    })
+  }
+
   render() {
     return (
       //grab Provider of the context
