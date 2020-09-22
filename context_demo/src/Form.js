@@ -36,7 +36,7 @@ const words = {
 export default function Form() {
   const classes = useStyles();
   //return 'value'
-  const { language, changeLanguage } = useContext(LanguageContext)
+  const { language, setLanguage } = useContext(LanguageContext)
 
   const { email, signIn, password, remember } = words[language]
 
@@ -50,7 +50,7 @@ export default function Form() {
         <Typography variant='h5'>
           Sign In
         </Typography>
-        <Select value={language} onChange={changeLanguage}>
+        <Select value={language} onChange={(e) => setLanguage(e.target.value)}>
           <MenuItem value='english'>
             English
           </MenuItem>

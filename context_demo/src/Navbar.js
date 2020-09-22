@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,12 +9,12 @@ import Switch from '@material-ui/core/Switch';
 
 import useStyles from './styles/NavBarStyles'
 import { ThemeContext } from './contexts/ThemeContext'
+import { LanguageContext } from './contexts/LanguageContext'
 
 export default function Navbar() {
   const classes = useStyles();
-
-  // static contextType = ThemeContext
-
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext)
+  const { language } = useContext(LanguageContext)
   const content = {
     english: {
       search: "Search",
@@ -29,30 +29,30 @@ export default function Navbar() {
       flag: "🇪🇸"
     }
   };
-
+  const { search, flag } = content[language]
   return (
     <div className={classes.root}>
-      <AppBar position='static' color='primary'>
+      <AppBar position='static' color={isDarkMode ? 'transparent' : 'white'}>
         <Toolbar>
           <IconButton
             className={classes.menuButton}
             color='inherit'>
-            <span>English</span>
+            <span>{flag}</span>
           </IconButton>
           <Typography
             className={classes.title}
             variant='h6'
             color='inherit'>
-            App Title
+            Sign up Form
           </Typography>
-          <Switch />
+          <Switch onChange={toggleTheme} />
           <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-              placeholder='Search...'
+              placeholder={`${search}...`}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput

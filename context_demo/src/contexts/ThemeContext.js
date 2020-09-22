@@ -5,12 +5,11 @@ export const ThemeContext = createContext()
 
 //class name does not matter
 export class ThemeProvider extends Component {
-  state = { isDarkMode: true }
+  state = { isDarkMode: false }
 
   toggleTheme = () => {
     this.setState({
-      isDarkMode: !this.state.isDarkMode,
-      toggleTheme: this.toggleTheme
+      isDarkMode: !this.state.isDarkMode
     })
   }
 
@@ -20,7 +19,7 @@ export class ThemeProvider extends Component {
       // here, we pass an object into the value
       <ThemeContext.Provider value={{
         ...this.state,
-        firstContext: true
+        toggleTheme: this.toggleTheme
       }}>
         {this.props.children}
       </ThemeContext.Provider>
